@@ -1,4 +1,4 @@
-package _struct
+package types
 
 import (
 	"net/http"

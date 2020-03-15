@@ -3,11 +3,11 @@ package client
 import (
 	"bytes"
 	"go-lite-http-client/errors"
-	"go-lite-http-client/struct"
+	"go-lite-http-client/types"
 	"net/http"
 )
 
-func HttpRequestClient(request *_struct.HttpRequest) (*http.Response, error) {
+func HttpRequestClient(request *types.HttpRequest) (*http.Response, error) {
 
 	req, err := http.NewRequest(request.Method, request.Address, bytes.NewBuffer(request.Query))
 	if err != nil {
