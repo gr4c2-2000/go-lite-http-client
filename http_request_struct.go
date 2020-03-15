@@ -16,9 +16,11 @@ type HttpRequest struct {
 func (req *HttpRequest) AddHeader(key string ,value string){
 	req.Headers[key]=value
 }
-
 func (req *HttpRequest) SetTimeout(seconds int){
 	req.Client.Timeout = time.Duration(seconds)*time.Second
+}
+func (req *HttpRequest) SendJson(){
+	req.AddHeader("content-type",	"content-type")
 }
 
 func NewHttpRequestStruct() HttpRequest {
