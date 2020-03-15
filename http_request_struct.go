@@ -19,10 +19,31 @@ func (req *HttpRequest) AddHeader(key string ,value string){
 func (req *HttpRequest) SetTimeout(seconds int){
 	req.Client.Timeout = time.Duration(seconds)*time.Second
 }
-func (req *HttpRequest) SendJson(){
-	req.AddHeader("content-type",	"content-type")
-}
 
+func (req *HttpRequest) SendJson(){
+	req.AddHeader("content-type",	"application/json")
+}
+func (req *HttpRequest) SendContentType(ContentType string){
+	req.AddHeader("content-type",	ContentType)
+}
+func (req *HttpRequest) SendXml(){
+	req.AddHeader("content-type",	"application/xml")
+}
+func (req *HttpRequest) SendForm(){
+	req.AddHeader("content-type",	"application/x-www-form-urlencoded")
+}
+func (req *HttpRequest) PostMethod(){
+	req.Method = "POST"
+}
+func (req *HttpRequest) PutMethod(){
+	req.Method = "PUT"
+}
+func (req *HttpRequest) DeleteMethod(){
+	req.Method = "DELETE"
+}
+func (req *HttpRequest) PatchMethod(){
+	req.Method = "PATCH"
+}
 func NewHttpRequestStruct() HttpRequest {
 	req := HttpRequest{}
 	req.Query = []byte{}
