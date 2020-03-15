@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func httpRequestClient(request *HttpRequest) (*http.Response, error) {
+func HttpRequestClient(request *HttpRequest) (*http.Response, error) {
 
 	req, err := http.NewRequest(request.Method, request.Address, bytes.NewBuffer(request.Query))
 	if err != nil {
