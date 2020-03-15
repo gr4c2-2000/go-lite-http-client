@@ -56,12 +56,12 @@ func (req *HttpRequest) Expect202(){
 	req.ExpectedResponseCode = 202
 }
 
-func NewHttpRequestStruct() HttpRequest {
+func NewHttpRequestStruct() *HttpRequest {
 	req := HttpRequest{}
 	req.Query = []byte{}
 	req.Method = "GET"
 	req.Headers = map[string]string{"Connection": "close"}
 	req.Address = "http://localhost"
 	req.Client = &http.Client{Timeout: time.Second * 10}
-	return req
+	return &req
 }
