@@ -1,4 +1,4 @@
-package httpLiteClient
+package scripts
 
 import (
 	"encoding/json"

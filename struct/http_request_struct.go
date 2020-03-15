@@ -1,4 +1,4 @@
-package httpLiteClient
+package _struct
 
 import (
 	"net/http"
@@ -11,6 +11,7 @@ type HttpRequest struct {
 	Address string
 	Method  string
 	Client  *http.Client
+	ExpectedResponseCode int
 }
 
 func (req *HttpRequest) AddHeader(key string ,value string){
@@ -44,6 +45,17 @@ func (req *HttpRequest) DeleteMethod(){
 func (req *HttpRequest) PatchMethod(){
 	req.Method = "PATCH"
 }
+
+func (req *HttpRequest) Expect200(){
+	req.ExpectedResponseCode = 200
+}
+func (req *HttpRequest) Expect201(){
+	req.ExpectedResponseCode = 201
+}
+func (req *HttpRequest) Expect202(){
+	req.ExpectedResponseCode = 202
+}
+
 func NewHttpRequestStruct() HttpRequest {
 	req := HttpRequest{}
 	req.Query = []byte{}
