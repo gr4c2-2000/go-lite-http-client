@@ -1,4 +1,4 @@
-package main
+package httpLiteClient
 
 import (
 	"net/http"
