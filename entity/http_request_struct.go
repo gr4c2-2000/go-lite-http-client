@@ -6,54 +6,62 @@ import (
 )
 
 type HttpRequest struct {
-	Query   []byte
-	Headers map[string]string
-	Address string
-	Method  string
-	Client  *http.Client
+	Query                []byte
+	Headers              map[string]string
+	Address              string
+	Method               string
+	Client               *http.Client
 	ExpectedResponseCode int
 }
 
-func (req *HttpRequest) AddHeader(key string ,value string){
-	req.Headers[key]=value
+func (req *HttpRequest) AddHeader(key string, value string) {
+	req.Headers[key] = value
 }
-func (req *HttpRequest) SetTimeout(seconds int){
-	req.Client.Timeout = time.Duration(seconds)*time.Second
+func (req *HttpRequest) SetTimeout(seconds int) {
+	req.Client.Timeout = time.Duration(seconds) * time.Second
 }
 
-func (req *HttpRequest) SendJson(){
-	req.AddHeader("content-type",	"application/json")
+func (req *HttpRequest) SendJson() {
+	req.AddHeader("content-type", "application/json")
 }
-func (req *HttpRequest) SendContentType(ContentType string){
-	req.AddHeader("content-type",	ContentType)
+func (req *HttpRequest) SendContentType(ContentType string) {
+	req.AddHeader("content-type", ContentType)
 }
-func (req *HttpRequest) SendXml(){
-	req.AddHeader("content-type",	"application/xml")
+func (req *HttpRequest) SendXml() {
+	req.AddHeader("content-type", "application/xml")
 }
-func (req *HttpRequest) SendForm(){
-	req.AddHeader("content-type",	"application/x-www-form-urlencoded")
+func (req *HttpRequest) SendForm() {
+	req.AddHeader("content-type", "application/x-www-form-urlencoded")
 }
-func (req *HttpRequest) PostMethod(){
+func (req *HttpRequest) PostMethod() {
 	req.Method = "POST"
 }
-func (req *HttpRequest) PutMethod(){
+func (req *HttpRequest) PutMethod() {
 	req.Method = "PUT"
 }
-func (req *HttpRequest) DeleteMethod(){
+func (req *HttpRequest) DeleteMethod() {
 	req.Method = "DELETE"
 }
-func (req *HttpRequest) PatchMethod(){
+func (req *HttpRequest) PatchMethod() {
 	req.Method = "PATCH"
 }
 
-func (req *HttpRequest) Expect200(){
+func (req *HttpRequest) Expect200() {
 	req.ExpectedResponseCode = 200
 }
-func (req *HttpRequest) Expect201(){
+func (req *HttpRequest) Expect201() {
 	req.ExpectedResponseCode = 201
 }
-func (req *HttpRequest) Expect202(){
+func (req *HttpRequest) Expect202() {
 	req.ExpectedResponseCode = 202
+}
+
+func (req *HttpRequest) SetQuery(Query []byte) {
+	req.Query = Query
+}
+
+func (req *HttpRequest) SetAddress(Address string) {
+	req.Address = Address
 }
 
 func NewHttpRequestStruct() *HttpRequest {
